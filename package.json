@@ -1,0 +1,24 @@
+{
+  "name": "calculationmethods",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node laba2.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lesikv1/calculationMethods.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lesikv1/calculationMethods/issues"
+  },
+  "homepage": "https://github.com/lesikv1/calculationMethods#readme",
+  "dependencies": {
+    "decimal.js": "^10.0.1",
+    "fs": "0.0.1-security"
+  }
+}

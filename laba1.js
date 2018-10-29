@@ -31,17 +31,18 @@ const func = (number) => {
     fs.appendFileSync('resultLaba1.txt', '\n' + 'delta (x) = ' + del.toFixed(i + 1) + ',')
 
     del = +del
-    del *= Math.pow(10, 7)
-    console.log(del.toFixed(1) + ` * 10^-${i}`)
-    fs.appendFileSync('resultLaba1.txt', '\n' + del.toFixed(1) + ` * 10^-${i}`)
+    del *= Math.pow(10, i)
+    console.log('delta (x) = ', del.toFixed(1) + ` * 10^-${i}`)
+    fs.appendFileSync('resultLaba1.txt', '\n' + 'delta (x) = ' + del.toFixed(1) + ` * 10^-${i}`)
 
     bet = $num / del
     bet = bet.toFixed(5)
     bet = +bet
-    bet *= Math.pow(10, i)
-    bet = bet.toFixed(5)
+    bet /= Math.pow(10, i)
+    bet = bet.toFixed(10)
     bet = +bet
-    console.log(bet)
+    console.log('g(x) = x* / delta (x) = ', bet)
+    fs.appendFileSync('resultLaba1.txt', '\n' + 'g(x) = x* / delta (x) = ' + bet)
     num = $num
     console.log('===================================')
     fs.appendFileSync('resultLaba1.txt', '\n' + '===================================')

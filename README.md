@@ -1,4 +1,4 @@
-# calculationMethods
+# Calculation Methods
 
 that start script, need run command 
 

@@ -14,8 +14,9 @@ let a = 0.49,
   b = 0.65, 
   arrX = [], 
   arrY = [],
-  item = 16
-  x = 3 
+  item = 16,
+  x = 0.02,
+  _ = 1
 
 for(let i = 0; i < item; ++i) { 
   arrY[i] = 1 / Math.sqrt(a + 1) 
@@ -27,37 +28,68 @@ for(let i = 0; i < item; ++i) {
   fs.appendFileSync('resultLaba2.txt', '\n' + 'x' + i + ' = ' + arrX[i] + '| y' + i + ' = ' + arrY[i])
 } 
 
-const funcUp = (n) => {
-  let result = 1
-  for(let i = 0; i < item; i++){
-    if(i != n){
-      result *= x - arrX[i]
+
+const formulaLabel = () => {
+  const funcUp = (n) => {
+    let result = 1
+    for(let i = 0; i < item; i++){
+      if(i != n){
+        result *= x - arrX[i]
+      }
     }
+    return result
   }
-  return result
-}
-
-const funcDown = (n) => {
-  let result = 1
-  for(let i = 0; i < 16; i++) {
-    if(i != n) {
-      result *= arrX[n] - arrX[i]
+  
+  const funcDown = (n) => {
+    let result = 1
+    for(let i = 0; i < 16; i++) {
+      if(i != n) {
+        result *= arrX[n] - arrX[i]
+      }
     }
+    return result.toFixed(30)
   }
-  return result.toFixed(30)
+  
+  const funcF = () => {
+    let result = 0
+    for (let i = 0; i < item; i++) {
+      result += arrY[i] * (funcUp(i) / funcDown(i))
+      result = new decimal(`${result}`)
+      result = result.toFixed(_)
+      result = +result
+    }
+    return result
+  }
+  
+  let mainResult = new decimal(`${funcF()}`)
+  console.log('--------------------')
+  console.log('Result Formula Leibniz = ', mainResult.toFixed(_))
+  fs.appendFileSync('resultLaba2.txt', '\n' + 'Result Formula Leibniz = ' + mainResult.toFixed(_))
 }
 
-const funcF = () => {
-  let result = 0
-  for (let i = 0; i < item; i++) {
-    result += arrY[i] * (funcUp(i) / funcDown(i))
-    result = new decimal(`${result}`)
-    result = result.toFixed(1)
-    result = +result
+formulaLabel()
+
+const formulaNuton = () => {
+  let Pn = arrY[0]
+  for(let i = 0; i < 15; i++) {
+    Pn += arrY[i + 1]
+    Pn = Pn.toFixed(_)
+    Pn = +Pn
+    for(let j = 0; j < i; j++) {
+      Pn *= (x - arrX[j])
+      Pn = new decimal(Pn)
+      Pn = Pn.toFixed(_)
+      Pn = +Pn
+    }
+    Pn = Pn.toFixed(_)
+    Pn = +Pn
+    // Pn += arrY[i] * (x - arrX[i])
   }
-  return result
+  return Pn
 }
 
-let mainResult = new decimal(`${funcF()}`)
-console.log('result = ', mainResult.toFixed(1))
-fs.appendFileSync('resultLaba2.txt', '\n' + 'result = ' + mainResult.toFixed(1))
+// formulaNuton()
+console.log('--------------------')
+console.log('Result Formula Newton = ', formulaNuton())
+console.log('--------------------')
+fs.appendFileSync('resultLaba2.txt', '\n' + 'Result Formula Newton = ' + formulaNuton())

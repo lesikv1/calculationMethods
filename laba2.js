@@ -15,8 +15,8 @@ let a = 0.49,
   arrX = [], 
   arrY = [],
   item = 16,
-  x = 0.02,
-  _ = 1
+  x = 0.535,
+  _ = 100
 
 for(let i = 0; i < item; ++i) { 
   arrY[i] = 1 / Math.sqrt(a + 1) 
@@ -83,12 +83,10 @@ const formulaNuton = () => {
     }
     Pn = Pn.toFixed(_)
     Pn = +Pn
-    // Pn += arrY[i] * (x - arrX[i])
   }
   return Pn
 }
 
-// formulaNuton()
 console.log('--------------------')
 console.log('Result Formula Newton = ', formulaNuton())
 console.log('--------------------')

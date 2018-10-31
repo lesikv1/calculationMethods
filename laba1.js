@@ -1,5 +1,6 @@
 const decimal = require('decimal.js').Decimal
 const fs = require('fs')
+const readline = require('readline')
 
 fs.unlink('resultLaba1.txt', (err) => {
   try {
@@ -7,7 +8,7 @@ fs.unlink('resultLaba1.txt', (err) => {
   } catch (err) {
     console.log('If start this sctipt first time that be error')
   }
-  console.log('resultLaba2.txt was deleted')
+  console.log('resultLaba1.txt was deleted')
 })
 
 const func = (number) => {
@@ -43,10 +44,21 @@ const func = (number) => {
     bet = +bet
     console.log('g(x) = x* / delta (x) = ', bet)
     fs.appendFileSync('resultLaba1.txt', '\n' + 'g(x) = x* / delta (x) = ' + bet)
-    num = $num
+    // num = $num
     console.log('===================================')
     fs.appendFileSync('resultLaba1.txt', '\n' + '===================================')
   }
 }
 
-func(3.35466646)
+
+
+const rl = readline.createInterface({ 
+  input: process.stdin, 
+  output: process.stdout 
+}); 
+
+rl.on('line', (input) => { 
+  console.log(`Received: ${input}`); 
+  func(input)
+  rl.close()
+});

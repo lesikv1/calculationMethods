@@ -15,15 +15,17 @@ let a = 0.49,
   arrX = [], 
   arrY = [],
   item = 16,
-  x = 0.535,
-  _ = 100
+  x = 0.53,
+  _ = 20,
+  h
 
-for(let i = 0; i < item; ++i) { 
+
+for(let i = 0; i < item; i++) { 
   arrY[i] = 1 / Math.sqrt(a + 1) 
+  arrX[i] = a 
   a += 0.01 
   a = a.toFixed(2) 
   a = +a 
-  arrX[i] = a 
   console.log('x',i,' = ',arrX[i], '| y',i,' = ', arrY[i]) 
   fs.appendFileSync('resultLaba2.txt', '\n' + 'x' + i + ' = ' + arrX[i] + '| y' + i + ' = ' + arrY[i])
 } 
@@ -63,8 +65,9 @@ const formulaLabel = () => {
   
   let mainResult = new decimal(`${funcF()}`)
   console.log('--------------------')
-  console.log('Result Formula Leibniz = ', mainResult.toFixed(_))
+  console.log('Result Formula Larang = ', mainResult.toFixed(_))
   fs.appendFileSync('resultLaba2.txt', '\n' + 'Result Formula Leibniz = ' + mainResult.toFixed(_))
+  h = mainResult.toFixed(_)
 }
 
 formulaLabel()
@@ -87,7 +90,16 @@ const formulaNuton = () => {
   return Pn
 }
 
+
 console.log('--------------------')
-console.log('Result Formula Newton = ', formulaNuton())
+console.log('Result Formula Newton = ', h)
 console.log('--------------------')
 fs.appendFileSync('resultLaba2.txt', '\n' + 'Result Formula Newton = ' + formulaNuton())
+
+
+let dotsResult = 1 / Math.sqrt(x + 1) 
+
+console.log('x = ', x)
+fs.appendFileSync('resultLaba2.txt', '\n' + 'x = ' + x)
+console.log('1 / Math.sqrt(x+1) = ', dotsResult)
+fs.appendFileSync('resultLaba2.txt', '\n' + '1 / Math.sqrt(x+1) = ' + dotsResult)
